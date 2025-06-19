@@ -1,0 +1,2635 @@
+:root
+    scroll-behavior: auto
+
+$font-family: "IBM Plex Sans Thai", sans-serif
+$main-color: #33AB90
+$red-color: #E10F21
+$bg-section: #F9F9F9
+$text-color: #666
+$white-color: #FFF
+$black-color: #000
+$normal-color: #333
+$bg-menu: #FFF
+$bold: 600
+$medium: 500
+$regular: 400
+
+@import bootstrap-reboot.min, bootstrap-grid.min, jquery-ui.min, animate, jquery.fancybox, owl.carousel.min, owl.theme.default.min, bootstrap-icons, url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap')
+
+@mixin img-cover($w, $h)
+    overflow: hidden
+    >img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+        aspect-ratio: calc($w / $h)
+        transition: 0.5s all ease
+
+@mixin img-contain($w, $h)
+    overflow: hidden
+    >img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: contain
+        aspect-ratio: calc($w / $h)
+        transition: 0.5s all ease
+
+@mixin dottext($line)
+    display: -webkit-box
+    -webkit-line-clamp: $line
+    -webkit-box-orient: vertical
+    overflow: hidden    
+    
+html
+    font-size: 16px
+    scrollbar-gutter: stable
+    &::-webkit-scrollbar-track
+        background-color: #eee
+    &::-webkit-scrollbar
+        width: 6px
+    &::-webkit-scrollbar-thumb
+        background-color: $main-color
+        cursor: pointer
+        border-radius: 5px
+        transition: .5s all ease
+        &:hover
+            background-color: $main-color
+
+body
+    font: 100% $font-family
+    color: $text-color
+    line-height: 1.5
+    font-weight: $regular
+    overflow-x: hidden
+    background-color: $white-color
+
+figure
+    margin: 0
+
+a
+    text-decoration: none
+
+strong, b
+    font-weight: $bold
+
+h1, h2, h3, h4, h5, h6
+    font-weight: $bold
+    line-height: 1.5
+
+select
+    appearance: none
+    background-image: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' style='&%2310; fill: %23000;&%2310;'%3E%3Cpath d='M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z'/%3E%3C/svg%3E" )
+    padding-right: 25px
+    background-size: 8px auto
+    background-repeat: no-repeat
+    background-position: right 12px center
+
+.wow
+    visibility: hidden
+
+.detail
+    &-container
+        @media (min-width: 1200px)
+            max-width: 1000px
+    &-editor
+        margin-bottom: 15px
+        h1, h2, h3, h4, h5, h6
+            color: $black-color
+            margin-bottom: 10px
+        h1
+            font-size: 2.25rem
+        h2
+            font-size: 1.875rem
+        h3
+            font-size: 1.625rem
+        h4
+            font-size: 1.375rem
+        h5
+            font-size: 1.25rem
+        h6
+            font-size: 1.125rem
+        p, ul
+            margin-bottom: 10px
+            line-height: 2
+        img
+            max-width: 100%
+            height: auto !important
+            display: block
+            margin: 15px 0
+    &-margin
+        margin-bottom: 70px
+    &-head
+        img
+            max-width: 100%
+            height: auto
+            display: block
+            margin-bottom: 20px
+        h1
+            color: $main-color
+            font-size: 1.875rem
+            margin-bottom: 15px
+    &-gallery
+        margin-top: 30px
+        display: grid
+        gap: 15px
+        grid-template-columns: repeat(5, 1fr)
+        &-item
+            display: block
+            @include img-cover($w: 100, $h: 100)
+            &:hover
+                img
+                    transform: scale(1.05)
+
+.owl-carousel
+    .owl-nav.disabled+.owl-dots
+        margin-top: 25px
+    .owl-dots
+        .owl-dot
+            span
+                width: 8px
+                height: 8px
+                background: rgba(200, 200, 200, 0.7)
+                margin: 5px 8px
+            &.active, &:hover
+                span
+                    background: $main-color
+
+.banner
+    &-fp
+        padding: 0
+        &-item
+            display: block
+        .owl-dots
+            position: absolute
+            bottom: 20px
+            width: 100%
+    &-inside
+        padding: 0
+        .owl-dots
+            position: absolute
+            bottom: 20px
+            width: 100%
+
+.social
+    &-box
+        position: fixed
+        right: 0
+        top: 50%
+        background: rgba(255, 255, 255, 0.9)
+        border-radius: 7px 0 0 7px
+        display: flex
+        flex-direction: column
+        z-index: 9
+        padding: 8px
+        gap: 8px
+        transform: translate(0, -50%)
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px
+        a
+            display: block
+            img
+                width: 23px
+                height: auto
+
+.header
+    &-promotion
+        background: $main-color
+        padding: 7px 15px 5px 15px
+        font-size: .9375rem
+        text-align: center
+        color: $white-color
+        a
+            display: inline-block
+            color: $white-color
+    &-bg
+        position: fixed
+        top: 0
+        left: 0
+        width: 100vw
+        background: $white-color
+        z-index: 99
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15)
+        &.sticky
+            & ~ .cart-box
+                top: 70px
+    &-logo
+        display: flex
+        padding: 5px
+        align-items: center
+        margin-left: auto
+        margin-right: auto
+        img
+            width: auto
+            height: 60px
+            display: block
+    &-link
+        display: inline-flex
+        align-items: center
+        padding: 5px 25px 3px 25px
+        border-right: 1px solid #EBEBEB
+        color: $normal-color
+        font-weight: $medium
+        transition: .5s all ease
+        &:hover
+            color: $main-color
+            transform: translate(0, -1px)
+    &-left, &-right
+        display: flex
+        flex-wrap: wrap
+        width: 35%
+    &-search
+        padding: 5px 15px
+        background: transparent
+        border: 0
+        transition: .5s all ease
+        margin-left: auto
+        &:hover
+            transform: translate(0, -1px)
+            svg
+                path
+                    fill: $main-color
+    &-login
+        display: inline-flex
+        align-items: center
+        margin-left: 10px
+        color: $normal-color
+        font-weight: $medium
+        transition: .5s all ease
+        span
+            display: block
+            margin-top: 2px
+        svg
+            margin-right: 5px
+        &:hover
+            color: $main-color
+            transform: translate(0, -1px)
+            svg
+                path
+                    fill: $main-color
+    &-cart
+        display: inline-flex
+        align-items: center
+        padding: 8px 15px
+        background: #202020
+        color: $white-color
+        align-self: center
+        border-radius: 50px
+        cursor: pointer
+        margin-left: 25px
+        margin-right: 40px
+        transition: .5s all ease
+        &-text
+            padding-top: 2px
+            padding-left: 10px
+        &:hover
+            color: $white-color
+            transform: translate(0, -1px)
+            background: $main-color
+    &-menu
+        display: flex
+        flex-wrap: wrap
+        &-btn
+            display: inline-flex
+            flex-wrap: wrap
+            align-items: center
+            padding: 5px 25px 3px 25px
+            border-right: 1px solid #EBEBEB
+            color: $normal-color
+            cursor: pointer
+            transition: .5s all ease
+            &-icon
+                position: relative
+                width: 12px
+                height: 12px
+                span
+                    width: 5px
+                    height: 5px
+                    background: $normal-color
+                    border-radius: 5px
+                    position: absolute
+                    transition: .5s all ease
+                    &:nth-child(1)
+                        top: 0
+                        left: 0
+                    &:nth-child(2)
+                        top: 0
+                        left: 7px
+                    &:nth-child(3)
+                        top: 7px
+                        left: 0
+                    &:nth-child(4)
+                        top: 7px
+                        left: 7px
+            &-text
+                margin-left: 5px
+                font-weight: $medium
+                margin-top: 1px
+            &:hover
+                color: $main-color
+                transform: translate(0, -1px)
+                .header-menu-btn-icon
+                    span
+                        background: $main-color
+            &.active
+                .header-menu-btn-icon
+                    span
+                        width: 8px
+                        height: 3px
+                        &:nth-child(1)
+                            transform: rotate(-135deg)
+                            top: 2
+                        &:nth-child(2)
+                            transform: rotate(135deg)
+                            top: 2
+                        &:nth-child(3)
+                            top: 7px
+                            transform: rotate(135deg)
+                        &:nth-child(4)
+                            top: 7px
+                            transform: rotate(-135deg)
+
+.overflow-hidden
+    overflow: hidden
+
+.company-fp
+    &-info
+        padding-right: 70px
+        padding-top: 50px
+        padding-bottom: 50px
+        align-self: center
+        hgroup
+            margin-bottom: 10px
+        h1
+            font-size: 2.375rem
+            color: $main-color
+            margin-bottom: 5px
+        h2
+            font-size: 1.375rem
+            margin-bottom: 5px
+            color: $black-color
+        h3
+            font-size: 1.25rem
+            color: $black-color
+            margin-bottom: 5px
+        p
+            margin-bottom: 15px
+            line-height: 1.5
+    &-logo
+        display: flex
+        flex-wrap: wrap
+        gap: 30px
+        margin-bottom: 35px
+        &-list
+            display: block
+            @include img-contain($w: 175, $h: 55)
+            max-width: 175px
+    &-btn
+        display: flex
+        flex-wrap: wrap
+        &-product
+            display: block
+            padding: 10px 15px 8px 20px
+            background: #202020
+            border-radius: 50px
+            color: $white-color
+            display: inline-flex
+            align-items: center
+            transition: .5s all ease
+            &::after
+                content: ""
+                width: 19px
+                height: 19px
+                display: block
+                background-image: url('data:image/svg+xml,<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 0C4.25362 0 -1.65117e-07 4.25362 -3.68771e-07 9.5C-5.72425e-07 14.7464 4.25362 19 9.5 19C14.7464 19 19 14.7464 19 9.5C19 4.25362 14.7467 0 9.5 0ZM8.48401 4.83754L12.5181 8.87164C12.6852 9.03864 12.7789 9.26515 12.7789 9.50132C12.7789 9.7375 12.6852 9.96414 12.5181 10.1311L8.48706 14.1622C8.26202 14.3872 7.93399 14.4749 7.62667 14.3926C7.31932 14.3102 7.07916 14.0701 6.99689 13.7627C6.91458 13.4552 7.00258 13.1273 7.22763 12.9023L10.6286 9.49963L7.22457 6.09659C7.00271 5.87102 6.9171 5.54457 6.9998 5.23911C7.08263 4.93363 7.32119 4.69507 7.6267 4.61235C7.9322 4.52963 8.25848 4.61514 8.48417 4.83713L8.48401 4.83754Z" fill="white"/></svg>')
+                margin-left: 30px
+                margin-bottom: 1px
+            &:hover
+                background: $main-color
+                color: $white-color
+                transform: translate(0, -2px)
+        &-about
+            display: block
+            padding: 10px 30px 8px 30px
+            background: $white-color
+            border: 1px solid $black-color
+            border-radius: 50px
+            color: $black-color
+            margin-left: 15px
+            transition: .5s all ease
+            &:hover
+                background: $main-color
+                color: $white-color
+                border-color: $main-color
+                transform: translate(0, -2px)
+    &-img
+        position: relative
+        padding-bottom: 140px
+        padding-top: 70px
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            left: 80px
+            bottom: 0
+            background: #F0FAF8
+            width: 100vw
+        &-01
+            width: 70%
+            @include img-cover($w: 400, $h: 475)
+            margin-left: auto
+            position: relative
+        &-02
+            position: absolute
+            left: 0
+            bottom: 70px
+            width: 55%
+            @include img-cover($w: 370, $h: 385)
+        
+.whyus
+    &-bg
+        position: relative
+        padding-top: 65px
+        padding-bottom: 65px
+        overflow: hidden
+        > img
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 100%
+            object-fit: cover
+        &::before
+            content: ""
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, rgba(0, 0, 0, 0) 1.06%, rgba(0, 0, 0, 0.75) 100%)
+            position: absolute
+            left: 0
+            top: 0
+            right: 0
+            bottom: 0
+            z-index: 1
+        .container
+            position: relative
+            z-index: 2
+    &-video
+        aspect-ratio: 16/9
+        position: relative
+        iframe
+            position: absolute
+            width: 100%
+            height: 100%
+        &-wrap
+            padding-right: 45px
+    &-text
+        h2
+            font-size: 2.375rem
+            color: $white-color
+            font-weight: $medium
+            margin-bottom: 10px
+            span
+                color: $main-color
+                font-weight: $bold
+        p
+            color: $white-color
+            margin-bottom: 30px
+    &-carousel
+        .owl-stage-outer
+            overflow: visible
+        .owl-stage
+            display: flex
+            flex-wrap: wrap
+        .owl-item
+            transition: .5s all ease
+            &:not(.active)
+                opacity: 0
+        .owl-dots
+            .owl-dot
+                span
+                    transition: .5s all ease
+                &.active
+                    span
+                        width: 23px
+    &-item
+        background: rgba(0, 0, 0, 0.5)
+        border: 1px solid rgba(255, 255, 255, 0.16)
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+        backdrop-filter: blur(25px)
+        border-radius: 10px
+        color: $white-color
+        padding: 15px
+        height: 100%
+        h3
+            font-size: 1.125rem
+            margin-bottom: 10px
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            img
+                max-width: 26px
+                height: 26px
+                object-fit: contain
+                display: block
+            span
+                display: block
+                width: calc( 100% - 26px )
+                padding-left: 10px
+        p
+            font-size: .875rem
+            line-height: 1.75
+            margin-bottom: 0
+
+.head
+    &-fp
+        margin-bottom: 15px
+        h2
+            font-size: 2.375rem
+            color: $main-color
+            margin-bottom: 10px
+        h3
+            font-size: 2rem
+            color: $main-color
+            margin-bottom: 10px
+        p
+            color: $text-color
+            margin-bottom: 15px
+        &-center
+            text-align: center
+        &-wbtn
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            justify-content: space-between
+
+.breadcrumb
+    &-product
+        display: flex
+        flex-wrap: wrap
+        padding-top: 8px
+        padding-bottom: 8px
+        color: $normal-color
+        align-items: center
+        margin-top: 15px
+        margin-bottom: 15px
+        i
+            font-size: .75rem
+            margin: 0 10px
+        &-link
+            display: block
+            color: $normal-color
+            font-size: .875rem
+            &:hover
+                color: $normal-color
+
+.section
+    &-inside
+        padding-top: 45px
+
+.product
+    &-fp
+        &-section
+            padding-top: 60px
+            padding-bottom: 60px
+            overflow: hidden
+        &-tab
+            display: flex
+            flex-wrap: wrap
+            list-style: none
+            gap: 10px
+            justify-content: center
+            padding: 0
+            margin-bottom: 50px
+            li
+                a
+                    padding: 7px 15px 5px 15px
+                    border: 1px solid #ccc
+                    font-size: .875rem
+                    border-radius: 50px
+                    color: $text-color
+                    display: block
+                    &:hover
+                        background: $main-color
+                        color: $white-color
+                        border-color: $main-color
+                &.active
+                    a
+                        color: $white-color
+                        background: #202020
+                        border-color: #202020
+    &-carousel
+        .owl-stage-outer
+            overflow: visible
+        .owl-stage
+            display: flex
+            flex-wrap: wrap
+        .owl-item
+            transition: .25s all ease
+            &:not(.active)
+                opacity: 0
+        .owl-dots
+            .owl-dot
+                span
+                    transition: .5s all ease
+                &.active
+                    span
+                        background: $black-color
+                        width: 23px
+    &-img
+        @include img-cover($w: 100, $h: 100)
+        margin-bottom: 15px
+        img
+            border-radius: 5px
+    &-price
+        font-size: 1.125rem
+        font-weight: $medium
+        color: $black-color
+        span
+            font-size: .8125em
+            color: #060606
+            margin-right: 8px
+            text-decoration: line-through
+        >div
+            display: inline-block
+        &-sale
+            color: $red-color
+    &-item
+        display: block
+        padding: 15px
+        background: $white-color
+        box-shadow: 0px 0px 3px #33AB90
+        border-radius: 10px
+        border: 1px solid #FFF
+        height: 100%
+        transition: .5s all ease
+        figcaption
+            h3
+                font-size: 1rem
+                color: $black-color
+                margin-bottom: 5px
+                @include dottext(2)
+            p
+                font-size: .8125rem
+                color: #949494
+                margin-bottom: 5px
+        &:hover
+            box-shadow: 0px 0px 3px #33AB90
+            border-color: #33AB90
+            transform: translate(0, -3px)
+            .product-img
+                img
+                    transform: scale(1.05)
+    &-wrap
+        display: flex
+        flex-wrap: wrap
+    &-grid
+        width: calc( 100% - 275px )
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        gap: 15px
+        padding-top: 15px
+        &-result
+            display: grid
+            grid-template-columns: repeat(5, 1fr)
+            gap: 15px
+            margin-bottom: 45px
+    &-filter
+        width: 275px
+        padding-right: 15px
+        h4
+            font-size: 1.25rem
+            color: $main-color
+            i
+                display: none
+                font-size: 1.125em
+    &-detail
+        position: relative
+        padding-left: 40px
+        &-bg
+            padding-top: 20px
+            padding-bottom: 45px
+            background: #FAFAFA
+        h2
+            font-size: 1rem
+            font-weight: $medium
+            color: $black-color
+            margin-bottom: 5px
+        h1
+            font-size: 2.25rem
+            color: $main-color
+            line-height: 1.25
+            margin-bottom: 5px
+        &-sku
+            font-size: .875rem
+            color: $text-color
+            margin-bottom: 10px
+        &-container
+            position: relative
+            padding-top: 45px
+            overflow: hidden
+        &-img
+            @include img-contain($w: 250, $h: 250)
+            >img
+                border-radius: 10px
+            video
+                width: 100%
+        &-slide
+            position: relative
+        &-carousel
+            margin-top: 10px
+            .product-detail-img
+                padding: 0px
+                box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15)
+                border-radius: 5px
+            .owl-stage-outer
+                overflow: visible
+        &-price
+            font-size: 1.625rem
+            font-weight: $medium
+            color: $black-color
+            line-height: 1.25
+            margin-bottom: 15px
+            span
+                font-size: .75em
+                color: #060606
+                margin-right: 8px
+                text-decoration: line-through
+            &-sale
+                color: $red-color
+            &-box
+                h6
+                    font-size: 1rem
+                    font-weight: $medium
+                    margin-bottom: 0
+                    color: $black-color
+        p
+            line-height: 2
+        &-status
+            display: flex
+            flex-wrap: wrap
+            font-size: 1rem
+            margin-bottom: 15px
+            h6
+                margin-bottom: 0
+                font-weight: 1rem
+                margin-right: 15px
+                color: $black-color
+                font-weight: $medium
+            &-green
+                &::before
+                    content: ""
+                    display: inline-block
+                    width: 10px
+                    height: 10px
+                    border-radius: 50px
+                    background: #33AB90
+                    margin-right: 3px
+        &-quantity
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            margin-bottom: 15px
+            h6
+                font-size: 1rem
+                font-weight: $medium
+                margin-bottom: 0
+                color: $black-color
+                margin-right: 10px
+            &-box
+                display: inline-flex
+            &-btn
+                background: $white-color
+                border: 1px solid #E6E6E6
+                width: 40px
+                height: 40px
+            &-input
+                background: $white-color
+                border: 1px solid #E6E6E6
+                border-left: 0
+                border-right: 0
+                width: 66px
+                height: 40px
+                text-align: center
+        &-addcart
+            display: inline-flex
+            align-items: center
+            font-size: 1rem
+            padding: 10px 25px 8px 48px
+            border-radius: 5px
+            background: $main-color
+            border: 0
+            color: $white-color
+            font-weight: $medium
+            position: relative
+            span
+                transition: .5s all ease
+            img
+                width: 23px
+                height: auto
+                display: block
+                margin: 0 0 2px 0
+                position: absolute
+                left: 15px
+                top: 50%
+                transform: translate(0, -50%)
+                transition: .5s all ease
+            &:hover
+                background: #009471
+                span
+                    transform: translate(-25px, 0)
+                img
+                    left: 100%
+                    transform: translate(-40px, -50%)
+        &-tab
+            display: flex
+            flex-wrap: wrap
+            list-style: none
+            padding-left: 0
+            margin: 0 0 25px 0
+            border-bottom: 1px solid #eee
+            li
+                font-size: 1rem
+                font-weight: $medium
+                padding: 25px 5px 15px 5px
+                margin-bottom: -1px
+                margin-right: 30px
+                font-weight: $bold
+                cursor: pointer
+                transition: .1s all ease
+                &.active, &:hover
+                    color: $main-color
+                    border-bottom: 3px solid $main-color
+            &-content
+                padding-bottom: 30px
+                border-bottom: 1px solid #EEEEEE
+                &:not(:first-child)
+                    display: none
+
+.three-banner
+    @include img-cover($w: 510, $h: 360)
+    &:hover
+        img
+            transform: scale(1.05)
+    &-grid
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 15px
+        margin-bottom: 15px
+
+.btn
+    &-viewall
+        display: block
+        padding: 10px 15px 8px 20px
+        background: #202020
+        border-radius: 50px
+        color: $white-color
+        display: inline-flex
+        align-items: center
+        margin-bottom: 10px
+        transition: .5s all ease
+        &::after
+            content: ""
+            width: 19px
+            height: 19px
+            display: block
+            background-image: url('data:image/svg+xml,<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 0C4.25362 0 -1.65117e-07 4.25362 -3.68771e-07 9.5C-5.72425e-07 14.7464 4.25362 19 9.5 19C14.7464 19 19 14.7464 19 9.5C19 4.25362 14.7467 0 9.5 0ZM8.48401 4.83754L12.5181 8.87164C12.6852 9.03864 12.7789 9.26515 12.7789 9.50132C12.7789 9.7375 12.6852 9.96414 12.5181 10.1311L8.48706 14.1622C8.26202 14.3872 7.93399 14.4749 7.62667 14.3926C7.31932 14.3102 7.07916 14.0701 6.99689 13.7627C6.91458 13.4552 7.00258 13.1273 7.22763 12.9023L10.6286 9.49963L7.22457 6.09659C7.00271 5.87102 6.9171 5.54457 6.9998 5.23911C7.08263 4.93363 7.32119 4.69507 7.6267 4.61235C7.9322 4.52963 8.25848 4.61514 8.48417 4.83713L8.48401 4.83754Z" fill="white"/></svg>')
+            margin-left: 30px
+            margin-bottom: 1px
+        &:hover
+            background: $main-color
+            color: $white-color
+            transform: translate(0, -2px)
+    &-arrow
+        width: 35px
+        height: 35px
+        background-color: $white-color
+        border: 1px solid #F3F3F3
+        border-radius: 50px
+        transition: .5s all ease
+        &::before
+            content: ""
+            background-image: url('data:image/svg+xml,<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 3.18336C10.9955 3.06953 10.9479 2.93792 10.8685 2.85496L8.28026 0.148266C8.10491 -0.00688043 7.76854 -0.0708496 7.57255 0.108508C7.37948 0.2852 7.38524 0.62771 7.57751 0.805062L9.39736 2.70571H0.48532C0.217333 2.70571 0 2.91961 0 3.18338C0 3.44715 0.217324 3.66104 0.48532 3.66104H9.39736L7.57751 5.5617C7.41186 5.72495 7.38129 6.07967 7.57255 6.25825C7.76369 6.43694 8.11203 6.37986 8.28026 6.21838L10.8685 3.51169C10.9571 3.41907 11.0002 3.31042 11 3.18336Z" fill="%23555555"/></svg>')
+            background-repeat: no-repeat
+            background-position: center center
+            width: 33px
+            height: 33px
+            display: block
+
+.article
+    &-carousel
+        .owl-stage-outer
+            overflow: visible
+        .owl-stage
+            display: flex
+            flex-wrap: wrap
+        .owl-item
+            transition: .25s all ease
+            &:not(.active)
+                opacity: 0
+        .owl-dots
+            .owl-dot
+                span
+                    transition: .5s all ease
+                &.active
+                    span
+                        background: $main-color
+                        width: 23px
+    &-bg
+        background: $bg-section
+        padding-top: 60px
+        padding-bottom: 60px
+        overflow: hidden
+    &-date
+        display: flex
+        font-size: .875rem
+        color: #888
+        margin-bottom: 10px
+        &::before
+            content: ""
+            width: 5px
+            height: 5px
+            border-radius: 5px
+            background: $main-color
+            margin: 8px 6px 8px 0
+    &-img
+        @include img-cover($w: 400, $h: 300)
+        margin-bottom: 15px
+    &-item
+        display: block
+        figcaption
+            h4
+                font-size: 1.25rem
+                color: $black-color
+                margin-bottom: 10px
+                @include dottext(2)
+            p
+                font-size: 1rem
+                line-height: 2
+                color: $text-color
+                margin-bottom: 10px
+                @include dottext(3)
+        &:hover
+            .btn-arrow
+                background-color: $main-color
+                transform: rotate(-30deg)
+                &::before
+                    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(135deg) brightness(102%) contrast(101%)
+            .article-img
+                img
+                    transform: scale(1.05)
+    &-grid
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 55px
+        &:last-child
+            margin-bottom: 50px
+
+.promotion
+    &-section
+        padding-top: 70px
+        padding-right: 70px
+        padding-bottom: 70px
+    &-item
+        display: block
+        @include img-cover($w: 100, $h: 100)
+        &:hover
+            img
+                transform: scale(1.02)
+    &-btn
+        display: inline-flex
+        align-items: center
+        .btn-viewall
+            margin-right: 10px
+        &-prev, &-next
+            cursor: pointer
+            margin-left: 10px
+            margin-bottom: 10px
+            transition: .5s all ease
+            &:hover
+                filter: brightness(0) saturate(100%) invert(54%) sepia(37%) saturate(681%) hue-rotate(116deg) brightness(98%) contrast(88%)
+    &-detail
+        &-img
+            @include img-contain($w: 100, $h: 100)
+        &-text
+            padding: 15px 15px 15px 30px
+            h1
+                font-size: 1.875rem
+                color: $main-color
+                margin-bottom: 10px
+
+.news
+    &-fp
+        &-section
+            padding-top: 70px
+            padding-left: 0
+            padding-bottom: 50px
+        &-img
+            width: 165px
+            @include img-cover($w: 165, $h: 140)
+        &-item
+            display: block
+            background: #F9F9F9
+            padding: 20px
+            margin-bottom: 20px
+            figure
+                display: flex
+                flex-wrap: wrap
+                align-items: center
+            figcaption
+                width: calc( 100% - 170px )
+                padding-left: 20px
+                h4
+                    font-size: 1.125rem
+                    margin-bottom: 10px
+                    @include dottext(2)
+                    color: $black-color
+            &:hover 
+                .btn-arrow
+                    background-color: #33ab90
+                    transform: rotate(-30deg)
+                    &::before
+                        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(135deg) brightness(102%) contrast(101%)
+
+.footer
+    &-bg
+        background: #026951
+        color: $white-color
+        padding-top: 25px
+        h4, h5
+            font-size: 1.0625rem
+            margin-bottom: 0
+            font-weight: $medium
+        p
+            font-size: .9375rem
+            color: #D1D1D1
+            line-height: 2
+    &-slogan
+        h3
+            font-size: 1.75rem
+            text-align: center
+            padding-bottom: 20px
+            border-bottom: 1px solid $white-color
+            margin-bottom: 25px
+    &-social
+        display: flex
+        flex-wrap: wrap
+        margin-top: 10px
+        margin-bottom: 10px
+        a
+            display: inline-flex
+            justify-content: center
+            align-items: center
+            width: 40px
+            height: 40px
+            border: 1px solid $white-color
+            border-radius: 50px
+            margin-bottom: 10px
+            margin-right: 10px
+            img
+                width: 18px
+                height: 18px
+                display: block
+                object-fit: contain
+    &-menu
+        margin-top: 10px
+        padding-left: 20px
+        li
+            font-size: .75rem
+            color: #D1D1D1
+            margin-bottom: 10px
+            a
+                display: inline-block
+                color: #D1D1D1
+                font-size: .875rem
+                transition: .5s all ease
+                &:hover
+                    color: #FFF
+                    transform: translate(2px, 0)
+    &-map
+        padding-bottom: 10px
+    &-copyright
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        align-items: center
+        small
+            font-size: .75rem
+            color: $normal-color
+            text-transform: uppercase
+        &-bg
+            background: $white-color
+            padding-top: 20px
+            padding-bottom: 20px
+
+.overlay, .overlay-filter
+    background-color: rgba(0, 0, 0, 0.7)
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 7
+    display: none
+            
+.main
+    &-nav
+        background: $white-color
+        position: fixed
+        left: 0
+        top: 105px
+        height: 100vh
+        width: 315px
+        max-width: 90vw
+        padding: 20px 30px
+        z-index: 8
+        box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.15)
+        display: none
+        ul
+            list-style: none
+            padding: 0
+            margin: 0
+            li
+                margin-bottom: 15px
+                a
+                    display: block
+                    font-size: 1.0625rem
+                    padding: 5px 0
+                    color: $black-color
+                    transition: .5s all ease
+                    &:hover
+                        color: $main-color
+                &.mb-nav
+                    display: none
+
+.submenu
+    padding-left: 15px !important
+    display: none
+    &-product
+        background: $white-color
+        position: absolute
+        top: 100%
+        left: 0
+        width: 100vw
+        border-top: 1px solid #EEEEEE
+        display: none
+        &-grid
+            display: flex
+            justify-content: center
+        &-list
+            display: block
+            width: 300px
+            max-width: calc( 33.33% - 26px )
+            margin: 26px 13px
+            text-align: center
+            font-size: 1rem
+            color: $normal-color
+            font-weight: $medium
+            transition: .5s all ease
+            img
+                width: 100%
+                height: auto
+                display: block
+                border: 1px solid #EEE
+                margin-bottom: 15px
+                transition: .5s all ease
+            &:hover
+                color: $main-color
+                transform: translate(0, -3px)
+                img
+                    transform: scale(1.01)
+
+.search
+    &-popup
+        background: $white-color
+        position: absolute
+        top: 100%
+        left: 0
+        width: 100vw
+        border-top: 1px solid #EEEEEE
+        display: none
+        &-box
+            padding: 15px
+            display: flex
+            flex-wrap: wrap
+            max-width: 800px
+            margin: 0 auto
+            justify-content: center
+        &-input
+            padding: 5px 10px
+            width: calc( 100% - 92px )
+            border: 1px solid #ccc
+            outline: 0
+            border-radius: 3px 0 0 3px
+        &-btn
+            width: 46px
+            height: 46px
+            padding: 0
+            border: 0
+            background: $main-color
+            border-radius: 0 3px 3px 0
+            svg
+                *
+                    fill: $white-color
+        &-close
+            width: 46px
+            height: 46px
+            padding: 0
+            border: 0
+            background: $white-color
+            color: $normal-color
+
+.filter
+    &-btn
+        border: 0
+        background: $main-color
+        color: $white-color
+        border-radius: 50px
+        padding: 10px 15px 10px 15px
+        display: none
+        align-items: center
+        i
+            font-size: 1.25rem
+            margin-right: 5px
+            line-height: 18px
+            margin-top: 2px
+    &-submit
+        position: sticky
+        left: 10px
+        right: 10px
+        bottom: 0px
+        border: 0
+        background: $main-color
+        color: $white-color
+        border-radius: 50px
+        padding: 10px 15px 8px 15px
+        display: none
+        align-items: center
+        z-index: 3
+    &-line
+        border-right: 1px solid #EEEEEE
+    &-head
+        display: flex
+        flex-wrap: wrap
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 15px
+        h3
+            font-size: 1.25rem
+            margin-bottom: 0
+            color: $black-color
+            &::before
+                content: ""
+                width: 30px
+                height: 3px
+                background: $main-color
+                display: block
+                margin-bottom: 5px
+    &-reset
+        font-size: .875rem
+        color: $text-color
+        border: 0
+        padding: 0
+        display: inline-flex
+        text-decoration: underline
+        background: transparent
+        line-height: 1
+        transition: .5s all ease
+        i
+            margin-right: 5px
+            margin-top: 1px
+            transition: .5s all ease
+        &:hover
+            color: $main-color
+            i
+                transform: rotate(360deg)
+    &-head-popup
+        display: none
+    &-list
+        display: block
+        list-style: none
+        padding: 0 0 0 5px
+        margin: 0
+        margin-bottom: 0px
+    &-checkbox
+        margin-bottom: 5px
+        &-sub
+            padding-left: 15px
+            display: none
+            margin-bottom: 5px
+        &-icon
+            padding-left: 25px
+            padding-top: 2px
+            position: relative
+            color: $normal-color
+            &::before
+                content: ""
+                width: 18px
+                height: 18px
+                border: 1px solid #CCCCCC
+                position: absolute
+                left: 0
+                top: 4px
+                border-radius: 4px
+                transition: .5s all ease
+            i
+                position: absolute
+                left: -1px
+                top: 1px
+                font-size: 19px
+                color: #FFF
+                transform: scale(0)
+                transition: .5s all ease
+        input
+            display: none
+            &:checked
+                & + .filter-checkbox-icon
+                    &::before
+                        background: $main-color
+                        border-color: $main-color
+                    i
+                        transform: scale(1)
+
+.pagination
+    display: flex
+    list-style: none
+    justify-content: flex-end
+    margin-top: 50px
+    padding: 0
+    margin-bottom: 70px
+    width: 100%
+    .page-item
+        &:not(:first-child)
+            margin-left: 12px
+        .page-link
+            border-radius: 50%
+            width: 46px
+            height: 46px
+            line-height: 46px
+            font-size: 1rem
+            font-weight: $medium
+            padding: 0
+            color: $normal-color
+            border: 0
+            background-color: $bg-section
+            display: inline-flex
+            justify-content: center
+            align-items: center
+            text-decoration: none
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15)
+            transition: .2s all ease
+        &.active, &:hover
+            .page-link
+                color: #FFF
+                background: $main-color
+        &:first-child, &:last-child
+            .page-link
+                font-size: 1rem
+                line-height: 1
+
+.file
+    &-list
+        display: flex
+        flex-wrap: wrap
+        align-items: flex-start
+        flex-direction: column
+        list-style: none
+        padding-left: 0
+        margin-bottom: 0
+        li
+            margin-bottom: 5px
+            a
+                color: $black-color
+                display: inline-flex
+                align-items: center
+                transition: .5s all ease
+                i
+                    color: $main-color
+                    font-size: 1.25rem
+                    margin-right: 5px
+                    margin-top: 2px
+                &:hover
+                    color: $main-color
+                    transform: translate(3px, 0)
+
+.related-product-section
+    padding-top: 50px
+    padding-bottom: 50px
+
+.cart
+    &-submit-button
+        display: flex
+        background: $main-color
+        padding: 10px
+        justify-content: center
+        color: $white-color
+        font-weight: $medium
+        width: 100%
+        border: 0
+        transition: .5s all ease
+        img
+            width: 23px
+            height: auto
+            display: block
+            margin-right: 8px
+        &:hover
+            color: $white-color
+            background: #009471
+    &-box
+        background: $white-color
+        position: fixed
+        top: 104px
+        right: 0
+        bottom: 0
+        width: 400px
+        padding: 15px 5px 15px 15px
+        z-index: 98
+        display: none
+        h5
+            font-size: 1.0625rem
+            color: $black-color
+            margin-bottom: 10px
+        &-scroll
+            height: calc( 100vh - 323px )
+            padding-right: 10px
+            overflow-y: auto
+            &::-webkit-scrollbar-track
+                background-color: #eee
+            &::-webkit-scrollbar
+                width: 6px
+            &::-webkit-scrollbar-thumb
+                background-color: $main-color
+                cursor: pointer
+                border-radius: 5px
+                transition: .5s all ease
+                &:hover
+                    background-color: $main-color
+    &-img
+        border-radius: 3px
+        border: 1px solid #E6E6E6
+        @include img-contain($w: 100, $h: 100)
+        width: 100px
+        display: block
+    &-del
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.90641 5.75035H15.094L14.3197 15.7921C14.3 16.0477 14.2075 16.2621 14.1091 16.381C14.0109 16.4995 13.9411 16.5304 13.8337 16.5304H6.16574C6.05819 16.5304 5.98885 16.4995 5.89041 16.381C5.79197 16.2621 5.6993 16.0477 5.67974 15.7921L4.90641 5.75035ZM3.09863 4.30591C2.13574 4.30591 2.13574 5.75035 3.09863 5.75035H3.4573L4.23841 15.9024C4.27908 16.4219 4.45619 16.911 4.77796 17.3017C5.10063 17.6915 5.60552 17.9748 6.16552 17.9748H13.8335C14.3949 17.9748 14.8984 17.6915 15.2213 17.3017C15.5442 16.911 15.7186 16.4219 15.7595 15.9024L16.542 5.75035H16.902C17.8651 5.75035 17.8651 4.30591 16.902 4.30591H3.09863Z' fill='%23333333'/%3E%3Cpath d='M8.43215 2.00635C7.46793 2.00635 7.46793 3.45079 8.43215 3.45079H11.5686C11.9679 3.45079 12.2908 3.1279 12.2908 2.72813C12.2908 2.32879 11.9679 2.00635 11.5686 2.00635H8.43215Z' fill='%23333333'/%3E%3C/svg%3E%0A")
+        width: 20px
+        height: 20px
+        background-color: $white-color
+        border: 0
+        position: absolute
+        right: 0
+        top: 0
+    &-qty
+        display: flex
+        flex-wrap: wrap
+    &-item
+        display: flex
+        flex-wrap: wrap
+        align-items: flex-start
+        padding-bottom: 10px
+        padding-top: 10px
+        border-bottom: 1px solid #EEEEEE
+        &-quantity
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            margin-bottom: 15px
+            &-box
+                display: inline-flex
+                font-size: .8125rem
+                margin-right: 10px
+                margin-bottom: 5px
+            &-btn
+                background: $white-color
+                border: 1px solid #E6E6E6
+                width: 30px
+                height: 24px
+            &-input
+                background: $white-color
+                border: 1px solid #E6E6E6
+                border-left: 0
+                border-right: 0
+                width: 46px
+                height: 24px
+                text-align: center
+        figcaption
+            width: calc( 100% - 100px )
+            padding-left: 10px
+            position: relative
+            a
+                display: block
+                padding-right: 25px
+            h3
+                font-size: .9375rem
+                color: $black-color
+                margin-bottom: 3px
+                font-weight: $medium
+                @include dottext(1)
+            p
+                font-size: .8125rem
+                color: #949494
+                margin-bottom: 5px
+            .product-price
+                font-size: .875rem
+    &-price
+        &-box
+            &-subtotal
+                display: flex
+                justify-content: space-between
+                flex-wrap: wrap
+                color: $black-color
+                border-bottom: 1px solid #eee
+                padding-top: 10px
+                padding-bottom: 10px
+                h6
+                    font-size: 1rem
+                    font-weight: $regular
+                    margin-bottom: 0
+                p
+                    width: 100%
+                    margin-bottom: 0
+                    font-size: .8125rem
+                    color: #666
+                &-number
+                    font-size: 1rem
+            &-total
+                display: flex
+                justify-content: space-between
+                flex-wrap: wrap
+                color: $black-color
+                padding-top: 10px
+                padding-bottom: 10px
+                h6
+                    font-size: 1rem
+                    font-weight: $bold
+                    margin-bottom: 0
+                &-number
+                    color: $red-color
+                    font-weight: $bold
+
+.news-inside
+    &-section
+        background: #F0FAF8
+        .article-item
+            padding: 15px
+            background: $white-color
+            border-radius: 10px
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15)
+
+.promotion
+    &-inside
+        &-grid
+            display: grid
+            grid-template-columns: repeat(4, 1fr)
+            gap: 20px
+    &-hilight
+        margin-bottom: 15px
+        padding-right: 0
+    &-item
+        &:first-child
+            grid-column: span 2
+            grid-row: span 2
+
+.login
+    &-bg
+        background: linear-gradient(180deg, rgba(51, 171, 144, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%)
+    &-container
+        max-width: 400px
+    &-form
+        margin-bottom: 15px
+        label
+            font-size: 1rem
+            margin-bottom: 5px
+            span
+                color: $red-color
+            & + a
+                color: $main-color
+                text-decoration: underline
+        input, select, textarea
+            width: 100%
+            padding: 10px 10px 7px 10px
+            border: 1px solid #CCCCCC
+            outline: 0
+            border-radius: 2px
+        &-or
+            font-size: 1rem
+            color: $normal-color
+            text-align: center
+            margin-bottom: 10px
+        &-register
+            font-size: 1rem
+            color: $normal-color
+            text-align: center
+            margin-bottom: 5px
+            a
+                display: inline-block
+                font-weight: $bold
+                color: $main-color
+    &-checkbox
+        margin-bottom: 15px
+        &-icon
+            padding-left: 25px
+            padding-top: 2px
+            position: relative
+            color: $normal-color
+            &::before
+                content: ""
+                width: 18px
+                height: 18px
+                border: 1px solid #CCCCCC
+                position: absolute
+                background: $white-color
+                left: 0
+                top: 4px
+                border-radius: 4px
+                transition: .5s all ease
+            i
+                position: absolute
+                left: -1px
+                top: 1px
+                font-size: 19px
+                color: #FFF
+                transform: scale(0)
+                transition: .5s all ease
+        input
+            display: none
+            &:checked
+                & + .login-checkbox-icon
+                    &::before
+                        background: $main-color
+                        border-color: $main-color
+                    i
+                        transform: scale(1)
+    &-btn
+        display: flex
+        justify-content: center
+        align-items: center
+        background: $main-color
+        font-size: 1rem
+        padding: 10px 10px 7px 10px
+        color: $white-color
+        width: 100%
+        border: 0
+        min-height: 46px
+        border-radius: 5px
+        margin-bottom: 15px
+        gap: 10px
+        transition: .5s all ease
+        &:hover
+            transform: translate(0, -1px) scale(1.01)
+        &-google
+            background: #DB4437
+        &-facebook
+            background: #1877F2
+    &-margin
+        margin-bottom: 50px
+
+.register
+    &-container
+        max-width: 700px
+
+.checkout
+    &-address
+        &-head
+            margin-top: 15px
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            h6
+                font-size: 1rem
+                color: $normal-color
+                margin-bottom: 15px
+            .login-checkbox
+                margin-left: auto
+    &-qty
+        margin-right: auto
+        font-size: .8125rem
+    &-left
+        padding-right: 45px
+        padding-bottom: 80px
+    &-right
+        padding-top: 100px
+        padding-left: 45px
+        padding-bottom: 80px
+        background: #F7FCFB
+        box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.1)
+        position: relative
+        &::before
+            content: ""
+            position: absolute
+            width: 50vw
+            height: 100%
+            background: #f7fcfb
+            left: 0
+            top: 0
+            z-index: -1
+        .cart-price-box
+            margin-top: 20px
+        .cart-submit-button
+            margin-top: 15px
+    &-shipping
+        font-size: .8125rem
+        color: $text-color
+        width: 100%
+        display: flex
+        justify-content: space-between
+
+.contact
+    &-info
+        padding-top: 50px
+        padding-left: 50px
+        padding-bottom: 50px
+        h3
+            font-size: 1.25rem
+            color: $main-color
+            margin-bottom: 10px
+        h4
+            font-size: 1.25rem
+            color: $main-color
+            margin-bottom: 10px
+            margin-top: 20px
+    &-list
+        display: inline-flex
+        margin-bottom: 10px
+        align-items: flex-start
+        color: $text-color
+        &:hover
+            color: $text-color
+        &-box
+            display: flex
+            flex-direction: column
+            align-items: flex-start
+        img
+            width: 15px
+            height: 18px
+            display: block
+            object-fit: contain
+            margin-right: 7px
+            margin-top: 2px
+    &-social
+        display: flex
+        flex-wrap: wrap
+        margin-top: 10px
+        margin-bottom: 10px
+        a
+            display: inline-flex
+            justify-content: center
+            align-items: center
+            width: 40px
+            height: 40px
+            border: 1px solid $main-color
+            border-radius: 50px
+            margin-bottom: 10px
+            margin-right: 10px
+            transition: .5s all ease
+            img
+                width: 18px
+                height: 18px
+                display: block
+                object-fit: contain
+                filter: invert(24%) sepia(7%) saturate(3788%) hue-rotate(114deg) brightness(76%) contrast(82%)
+            &:hover
+                transform: translate(0, -2px)
+    &-iframe
+        position: absolute
+        left: 0
+        top: 0
+        width: 50vw
+        height: 100%
+        &-relative
+            position: relative
+            min-height: 600px
+
+.distributor
+    &-form
+        display: flex
+        flex-wrap: wrap
+        margin-bottom: 10px
+        label
+            font-size: 1rem
+            color: $text-color
+            padding: 5px
+            font-weight: $medium
+            width: 100%
+        input, select
+            width: 100%
+            border: 1px solid #EBEBEB
+            border-radius: 5px
+            padding: 10px
+            color: $text-color
+            outline: 0
+            &.distributor-search-input
+                width: calc( 100% - 46px )
+                border-right: 0
+                border-radius: 5px 0 0 5px
+    &-search-btn
+        width: 46px
+        height: 46px
+        border: 1px solid #EBEBEB
+        background: #FFF
+        border-left: 0
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        font-size: 18px
+        line-height: 1
+        color: $main-color
+        border-radius: 0 5px 5px 0
+    &-grid
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        gap: 30px
+        margin-top: 30px
+    &-img
+        border-radius: 5px
+        @include img-cover($w: 265, $h: 100)
+        margin-bottom: 10px
+    &-item
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1)
+        border-radius: 10px
+        padding: 15px
+        figcaption
+            display: flex
+            flex-direction: column
+            align-items: flex-start
+            h3
+                font-size: 1rem
+                font-weight: $bold
+                color: $main-color
+        &-list
+            display: flex
+            color: $text-color
+            margin-bottom: 10px
+            i
+                margin-right: 7px
+                color: $main-color
+        &-map
+            display: inline-flex
+            color: $text-color
+            align-items: center
+            font-weight: $medium
+            span
+                width: 30px
+                height: 30px
+                background: $main-color
+                border-radius: 50px
+                margin-right: 8px
+                display: inline-flex
+                align-items: center
+                justify-content: center
+                img
+                    width: 16px
+                    height: 16px
+                    display: block
+            &:hover
+                color: $main-color
+
+.search-result
+    &-text
+        font-size: 1rem
+        font-weight: $medium
+        margin-bottom: 20px
+        text-align: center
+
+.about-editor
+    margin-bottom: 40px
+
+.member
+    &-sidebar
+        background: #F7FCFB
+        list-style: none
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px
+        padding: 20px 15px 5px 15px
+        border-radius: 5px
+        margin-bottom: 30px
+        &-box
+            h4
+                font-size: 1.5rem
+                color: $main-color
+                margin-bottom: 5px
+            p
+                margin-bottom: 10px
+        &-btn
+            display: inline-flex
+            color: $normal-color
+            margin-bottom: 15px
+            font-weight: $medium
+            transition: .5s all ease
+            &:hover
+                color: $main-color
+                transform: translate(5px, 0)
+            &.active
+                color: $main-color
+                border-bottom: 2px solid $main-color
+    &-order
+        &-box
+            padding-left: 15px
+            h3
+                font-size: 1.5rem
+                color: $main-color
+        &-table
+            width: 100%
+            margin-bottom: 45px
+            th, td
+                text-align: center
+                padding: 13px 5px 10px 5px
+                span
+                    display: none
+                    font-weight: $medium
+                    color: $black-color
+                a
+                    color: $main-color
+                    font-weight: $bold
+            thead
+                tr
+                    th
+                        background: $main-color
+                        color: $white-color
+                        padding: 15px 5px 12px 5px
+                        &:first-child
+                            border-radius: 15px 0 0 5px
+                        &:last-child
+                            border-radius: 0 15px 5px 0
+            tbody
+                tr
+                    &:nth-child(2)
+                        td
+                            background: $bg-section
+            tfoot
+                tr
+                    td:first-child
+                        text-align: left
+                    td
+                        font-weight: $medium
+        &-detail
+            display: flex
+            flex-wrap: wrap
+            img
+                width: 60px
+                height: 60px
+                display: block
+                object-fit: contain
+            h6
+                font-size: 1rem
+                width: calc( 100% - 60px )
+                padding-left: 15px
+                text-align: left
+                align-self: center
+                margin-bottom: 0
+                font-weight: $regular
+    &-address
+        margin-bottom: 50px
+        &-list
+            margin-bottom: 10px
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px
+            display: flex
+            flex-wrap: wrap
+            flex-direction: column
+            border-radius: 5px
+            padding: 15px
+            h6
+                color: $main-color
+                display: flex
+                align-items: flex-start
+                span
+                    display: inline-block
+                    background: $main-color
+                    color: $white-color
+                    padding: 3px 10px
+                    margin-left: 5px
+                    border-radius: 5px
+                    font-size: .8125rem
+                    font-weight: $regular
+                    white-space: nowrap
+            address
+                margin-bottom: 5px
+            p
+                margin-bottom: 10px
+        &-edit
+            display: flex
+            &-btn
+                border: 1px solid #ccc
+                border-radius: 5px
+                color: $text-color
+                padding: 3px 15px
+                background: $white-color
+                font-size: .875rem
+                margin-right: 10px
+                transition: .5s all ease
+                &:hover
+                    color: $white-color
+                    background: $main-color
+                    border-color: $main-color
+                &-del
+                    border-color: #DC2C1C
+                    color: #DC2C1C
+        &-btn-wrap
+            display: flex
+            justify-content: center
+        &-btn-edit
+            width: 140px
+            display: inline-flex
+        &-btn-cancel
+            width: 140px
+            display: inline-flex
+            margin-right: 15px
+            background: #DC2C1C
+
+.video-frame
+    width: 1000px
+    max-width: 100%
+    aspect-ratio: 16/9
+    position: relative
+    margin-bottom: 15px
+    iframe
+        width: 100%
+        height: 100%
+        position: absolute
+        left: 0
+        top: 0
+
+.form
+    &-upload
+        display: flex
+        flex-wrap: wrap
+        gap: 10px
+        &-img
+            @include img-contain($w: 100, $h: 100)
+            width: 100px
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px
+            border-radius: 5px
+            background: $white-color
+            position: relative
+            &-btn
+                position: relative
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 100px
+                height: 100px
+                box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px
+                border-radius: 5px
+                background: $white-color
+                &-input
+                    position: absolute
+                    top: 0
+                    left: 0
+                    bottom: 0
+                    right: 0
+                    z-index: 3
+                    opacity: 0
+        &-del
+            position: absolute
+            z-index: 2
+            top: 0
+            right: 0
+            padding: 0 5px
+            border: 0
+            background: rgba(255, 255, 255, 0.5)
+        
+.one-stophead
+    display: flex
+    justify-content: center
+    img
+        width: 2.1em
+        height: auto
+    &-text
+        text-align: left
+        padding-left: 10px
+        span
+            display: block
+            font-size: 0.7em
+        
+    
+/*RESPONSIVE*/
+@media (max-width: 1399px)
+    .detail-editor
+        h1
+            font-size: 1.75rem
+        h2
+            font-size: 1.625rem
+        h3
+            font-size: 1.5rem
+        h4
+            font-size: 1.25rem
+        h5
+            font-size: 1.125rem
+        h6
+            font-size: 1.0625rem
+
+@media (max-width: 1199px)
+    .header-promotion a
+        font-size: .875rem
+
+    .header-left, .header-right
+        width: 40%
+
+    .header-logo img
+        height: 40px
+
+    .header-cart
+        margin-right: 25px
+        padding: 5px 10px
+        font-size: .875rem
+
+    .header-link
+        font-size: .875rem
+        padding: 5px 15px 3px 15px
+
+    .header-login
+        font-size: .875rem
+        svg
+            width: 20px
+            height: auto
+
+    .header-search
+        svg
+            width: 16px
+            height: auto
+
+    .company-fp-info
+        h1
+            font-size: 2rem
+        h2
+            font-size: 1.25rem
+        h3
+            font-size: 1.0625rem
+
+    .company-fp-logo
+        gap: 15px
+        &-list
+            max-width: 120px
+
+    .whyus-text
+        h2
+            font-size: 1.875rem
+
+    .head-fp
+        h2
+            font-size: 1.875rem
+        h3
+            font-size: 1.5rem
+
+    .article-item figcaption
+        h4
+            font-size: 1rem
+        p
+            line-height: 1.75
+
+    .news-fp-item figcaption h4
+        font-size: 1rem
+
+    .promotion-section
+        padding-right: 40px
+
+    .footer-slogan h3
+        font-size: 1.375rem
+
+    .news-fp-img
+        width: 140px
+
+    .news-fp-item figcaption
+        width: calc( 100% - 140px )
+
+    .product-grid
+        grid-template-columns: repeat(3, 1fr)
+        &-result
+            grid-template-columns: repeat(4, 1fr)
+
+    .product-detail h2
+        font-size: 1.625rem
+
+    .product-detail-price
+        font-size: 1.25rem
+
+    .related-product-section
+        padding-top: 30px
+
+    .article-grid
+        gap: 25px
+
+    .cart-box
+        top: 84px
+
+    .header-bg.sticky~.cart-box
+        top: 50px
+
+    .cart-box-scroll
+        height: calc(100vh - 302px)
+
+    .detail-head 
+        h1
+            font-size: 1.5rem
+
+    .distributor-grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 20px
+
+@media (max-width: 991px)
+    .header-login, .header-link-hide-mb
+        display: none
+
+    .header-left, .header-right
+        width: 35%
+
+    .promotion-section
+        padding-right: calc(var(--bs-gutter-x)/2)
+
+    .header-cart
+        margin-left: 15px
+
+    .company-fp-info
+        h1
+            font-size: 1.875rem
+        h2
+            font-size: 1.125rem
+
+    .whyus-text
+        h2
+            font-size: 1.375rem
+            margin-bottom: 5px
+
+    .head-fp
+        h2
+            font-size: 1.625rem
+        h3
+            font-size: 1.375rem
+
+    .company-fp-info
+        padding-right: calc(var(--bs-gutter-x)/2)
+
+    .company-fp-img
+        padding-top: 60px
+        padding-bottom: 60px
+        
+    .company-fp-img-01
+        width: 85%
+
+    .company-fp-img-02
+        left: 15px
+
+    .company-fp-logo-list
+        max-width: 80px
+
+    .whyus-video-wrap
+        padding-right: calc(var(--bs-gutter-x)/2)
+
+    .whyus-bg
+        padding-top: 30px
+        padding-bottom: 30px
+
+    .whyus-text p
+        margin-bottom: 15px
+
+    .whyus-item h3
+        font-size: 1rem
+        margin-bottom: 5px
+        span
+            width: 100%
+            padding-left: 0
+            padding-top: 5px
+
+    .product-fp-section, .article-bg, .promotion-section
+        padding-top: 30px
+        padding-bottom: 30px
+
+    .news-fp-section
+        padding-top: 0px
+        padding-bottom: 15px
+
+    .product-fp-tab
+        margin-bottom: 30px
+
+    .footer-slogan h3
+        font-size: 1rem
+
+    .main-nav ul li.mb-nav.mb-nav
+        display: block
+
+    .product-filter
+        width: 200px
+
+    .product-grid
+        width: calc( 100% - 200px )
+
+    .product-item
+        padding: 10px
+
+    .product-item figcaption h3
+        font-size: .9375rem
+
+    .product-price
+        font-size: 1rem
+
+    .filter-checkbox-icon
+        font-size: .875rem
+
+    .product-filter h4
+        font-size: 1rem
+
+    .pagination .page-item .page-link
+        width: 40px
+        height: 40px
+        font-size: .875rem
+
+    .product-inside
+        padding-top: 30px
+        h2
+            margin-bottom: 0
+
+    .breadcrumb-product
+        margin-top: 0
+        margin-bottom: 5px
+
+    .product-detail
+        padding-left: calc(var(--bs-gutter-x)/2)
+        h2
+            font-size: 1.375rem
+
+    .news-inside-section 
+        .article-grid
+            gap: 15px
+        .article-item
+            padding: 10px
+
+    .promotion-detail-text
+        padding: 15px 15px 0 15px
+
+    .promotion-inside-grid
+        gap: 15px
+
+    .checkout-left
+        padding-bottom: 15px
+        padding-right: calc(var(--bs-gutter-x)/2)
+
+    .checkout-address-head
+        margin-top: 10px
+
+    .checkout-right
+        padding-left: calc(var(--bs-gutter-x)/2)
+        padding-top: 5px
+        padding-bottom: 15px
+        margin-bottom: 40px
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px
+        border-radius: 5px
+        &::before
+            display: none
+
+    .social-box
+        display: none
+
+    .contact-info
+        padding-top: 30px
+        padding-left: 30px
+        padding-bottom: 30px
+
+    .contact-iframe-relative
+        min-height: 300px
+
+    .distributor-grid
+        grid-template-columns: repeat(2, 1fr)
+
+    .member-sidebar
+        display: flex
+        justify-content: space-around
+        &-btn
+            margin-bottom: 10px
+
+    .member-order-box
+        padding-left: 0
+
+    .member-sidebar-box
+        h4
+            font-size: 1.125rem
+
+    .member-order-box h3
+        font-size: 1.125rem
+
+@media (max-width: 767px)
+    html
+        font-size: 14px
+
+    .header-link
+        display: none
+
+    .header-logo
+        width: 100%
+        order: -1
+        border-bottom: 1px solid #ebebeb
+        img
+            height: 36px
+
+    .header-left
+        width: auto
+        
+    .header-right
+        width: auto
+        padding-top: 5px
+        padding-bottom: 5px
+        margin-left: auto
+
+    .header-cart
+        margin-right: 15px
+        margin-left: 10px
+
+    .header-menu-btn
+        padding: 5px 15px 5px 15px
+
+    .header-search
+        padding: 5px 10px
+
+    .main-nav 
+        padding: 20px
+        ul li
+            margin-bottom: 5px
+
+    .company-fp-info
+        padding-top: 30px
+        padding-bottom: 20px
+
+    .company-fp-img
+        padding-top: 20px
+        padding-bottom: 20px
+
+    .whyus-text h2
+        margin-top: 15px
+
+    .head-fp p
+        margin-bottom: 0
+
+    .product-fp-tab
+        margin-bottom: 20px
+
+    .three-banner
+        &-grid
+            grid-template-columns: repeat(2, 1fr)
+        &:first-child
+            grid-column: 1 / -1
+
+    .footer-copyright
+        justify-content: center
+        &-bg
+            padding-top: 10px
+            padding-bottom: 10px
+        small
+            order: 2
+            margin-top: 10px
+
+    .footer-social a
+        width: 32px
+        height: 32px
+
+    .submenu-product-list
+        max-width: calc(33.33% - 5px)
+        margin: 26px 5px
+
+    .product-filter
+        width: 100%
+        h4
+            display: flex
+            font-size: 1.0625rem
+            i
+                display: block
+                margin-right: 7px
+
+    .product-grid
+        width: 100%
+
+    .product-sidebar
+        display: none
+        position: fixed
+        background: $white-color
+        left: 0
+        top: 0
+        height: 100vh
+        width: 300px
+        z-index: 99
+        padding: 15px
+        overflow-x: auto
+
+    .filter-list
+        margin-bottom: 10px
+
+    .filter-checkbox-icon
+        font-size: 1rem
+
+    .filter-head-popup
+        display: block
+
+    .filter-submit
+        display: block
+        width: 100%
+
+    .product-grid
+        grid-template-columns: repeat(2, 1fr)
+        &-result
+            grid-template-columns: repeat(2, 1fr)
+
+    .pagination
+        margin-top: 30px
+        margin-bottom: 50px
+
+    .breadcrumb-product
+        display: none
+
+    .product-detail
+        padding-top: 15px
+    
+    .product-detail-bg
+        padding-bottom: 30px
+
+    .product-detail-tab li
+        margin-right: 10px
+        &:last-child
+            margin-right: 0
+
+    .product-detail-tab-content
+        padding-bottom: 15px
+
+    .related-product-section
+        padding-bottom: 30px
+
+    .article-grid
+        gap: 15px
+        grid-template-columns: repeat(2, 1fr)
+
+    .cart-box
+        width: 300px
+        top: 121px
+
+    .header-bg.sticky~.cart-box
+        top: 90px
+
+    .cart-box-scroll
+        height: calc(100vh - 326px)
+
+    .promotion-inside-grid
+        gap: 15px
+
+    .section-inside
+        padding-top: 20px
+
+    .detail-head
+        img
+            margin-bottom: 15px
+        h1
+            font-size: 1.375rem
+
+    .detail-gallery
+        grid-template-columns: repeat(2, 1fr)
+
+    .detail-margin
+        margin-bottom: 30px
+
+    .promotion-inside-grid
+        grid-template-columns: repeat(2, 1fr)
+
+    .head-fp h2
+        margin-bottom: 0
+
+    .checkout-address-head .login-checkbox
+        width: 100%
+
+    .checkout-right
+        padding-left: 15px
+        padding-right: 15px
+
+    .contact-iframe
+        position: static
+        height: 300px
+        width: 100%
+        padding-top: 10px
+
+    .contact-info
+        padding: calc(var(--bs-gutter-x)/2)
+
+    .distributor-grid
+        grid-template-columns: repeat(1, 1fr)
+
+    .member-sidebar
+        flex-direction: column
+
+    .member-order-table
+        thead
+            display: none
+        tr
+            display: flex
+            flex-wrap: wrap
+            border-bottom: 1px solid #eee
+            td
+                width: 100%
+                text-align: left
+                padding: 7px 10px
+                span
+                    display: inline-block
+                    padding-right: 10px
+        &-detail
+            tbody
+                tr
+                    &:nth-child(2)
+                        background: #f9f9f9
+                    td:not(:first-child)
+                        width: auto
+                    td
+                        background: $white-color
+            tfoot
+                tr
+                    td
+                        width: auto
