@@ -153,7 +153,7 @@ class FrontendController extends Controller
             });
         }
 
-        $product = $product->orderByRaw("products_name COLLATE utf8mb4_unicode_ci DESC")
+        $product = $product->where("products_status","show")->orderByRaw("products_name COLLATE utf8mb4_unicode_ci DESC")
             ->paginate(12);
             // ->get();
         // $product = $product->orderBy('products_code', 'DESC')->get();
@@ -412,6 +412,7 @@ class FrontendController extends Controller
 
     public function distributor(Request $request){
         // dd($request);
+
         $proviceSearch = $request->provice;
         $aumphureSearch = $request->aumphure;
         $textSearch = $request->text;
@@ -439,7 +440,10 @@ class FrontendController extends Controller
                 'aumphure' => $request->aumphure,
                 'text' => $request->text,
             ]);
-        $Provinces = Provinces::orderBy('name_th', 'asc')->get();
+
+        $allDealers = DB::table('dealers')->distinct()->pluck('FK_province_id')->toArray();
+
+        $Provinces = Provinces::whereIn('id', $allDealers)->orderBy('name_th', 'asc')->get();
         $Amphures = Amphures::when($proviceSearch, function ($query) use ($proviceSearch) {
                 return $query->where('province_id', $proviceSearch);
             })->orderBy('name_th', 'asc')->get();

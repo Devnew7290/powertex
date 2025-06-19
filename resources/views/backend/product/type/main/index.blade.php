@@ -100,7 +100,8 @@
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
-            responsive: true
+            responsive: true,
+            "pageLength": 50
         });
     });
 
@@ -124,7 +125,7 @@
     function del_value(id) {
         var baseUrl = "{{ url('/') }}";
         var url = baseUrl + "/backend/product/type/delete/" + id;
-        
+
         console.log(id, url);
 
         Swal.fire({

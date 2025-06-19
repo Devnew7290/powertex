@@ -41,25 +41,43 @@ class HomePageController extends Controller
         return view('backend.home_page.banner.add', compact('bannerAll'));
     }
 
-    public function banner_create(Request $request){
+    public function banner_create(Request $request)
+    {
         $status = $request->banner_status ? "show" : "hide";
 
-        $banner = new banner;
+        $banner = new Banner;
         $banner->banner_number  = $request->banener_number;
-        $banner->banner_show   = $status;
-        $banner->FK_user_id     = Auth::user()->id;
+        $banner->banner_show  = $status;
+        $banner->FK_user_id   = Auth::user()->id;
         $banner->FK_user_name   = Auth::user()->name;
 
-        if ($request->hasFile('banner_image')!=''){
-            $filename = 'home_page_banner'.Str::random(12).".". $request->file('banner_image')->getClientOriginalExtension();
-            $request->file('banner_image')->move(public_path().'/upload/homepage/', $filename);
-            $banner->banner_image= 'upload/homepage/'.$filename;        
+        // ตรวจสอบว่ามีการอัปโหลดไฟล์ banner_image และไฟล์ถูกต้อง
+        if ($request->hasFile('banner_image') && $request->file('banner_image')->isValid()) {
+            $image = $request->file('banner_image');
+
+            // ใช้ getimagesize() เพื่อตรวจสอบขนาดรูปภาพ
+            $imageInfo = getimagesize($image->getPathname()); // ใช้ getPathname() เพื่อให้ได้พาธของไฟล์ชั่วคราว
+            $width = $imageInfo[0]; // ความกว้าง
+            $height = $imageInfo[1]; // ความสูง
+
+            // ตรวจสอบขนาดรูปภาพที่ต้องการ (กว้าง 1600px, ยาว 690px)
+            if ($width != 1600 || $height != 690) {
+                $mes = 'ขนาดรูปภาพไม่ถูกต้อง! กรุณาอัปโหลดรูปภาพที่มีขนาดกว้าง 1600px และยาว 690px เท่านั้น';
+                $yourURL = url('/backend/home/banner');
+                echo ("<script>alert('$mes'); location.href='$yourURL'; </script>");
+                return; // หยุดการทำงานถ้าขนาดไม่ถูกต้อง
+            }
+
+            // ถ้าขนาดถูกต้อง ให้ดำเนินการบันทึกไฟล์
+            $filename = 'home_page_banner' . Str::random(12) . "." . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/upload/homepage/', $filename);
+            $banner->banner_image = 'upload/homepage/' . $filename;
         }
 
         $banner->save();
 
-        $mes = 'Success';
-        $yourURL= url('/backend/home/banner');
+        $mes = 'บันทึกแบนเนอร์สำเร็จ!';
+        $yourURL = url('/backend/home/banner');
         echo ("<script>alert('$mes'); location.href='$yourURL'; </script>");
     }
 
@@ -74,7 +92,7 @@ class HomePageController extends Controller
         if ($request->hasFile('banner_image')!=''){
             $filename = 'home_page_banner'.Str::random(12).".". $request->file('banner_image')->getClientOriginalExtension();
             $request->file('banner_image')->move(public_path().'/upload/homepage/', $filename);
-            $data['banner_image'] = 'upload/homepage/'.$filename;        
+            $data['banner_image'] = 'upload/homepage/'.$filename;
         }
 
         $data['banner_number']      = $request->banener_number;
@@ -95,19 +113,19 @@ class HomePageController extends Controller
 
     public function banner_change($id) {
         $banner = banner::where('banner_id', $id)->first();
-    
+
         if (!$banner) {
             return response()->json(['error' => 'Banner not found'], 404);
         }
-    
+
         $status = $banner->banner_show == "show" ? "hide" : "show";
-    
+
         $banner->update([
             'banner_show' => $status,
             'FK_user_id' => Auth::id(),
             'FK_user_name' => Auth::user()->name
         ]);
-    
+
         return response()->json(['success' => true, 'status' => $status]);
     }
 
@@ -140,31 +158,31 @@ class HomePageController extends Controller
         if ($request->hasFile('about_image_front')!=''){
             $filename = 'about_us_image_front_'.Str::random(12).".". $request->file('about_image_front')->getClientOriginalExtension();
             $request->file('about_image_front')->move(public_path().'/upload/homepage/', $filename);
-            $aboutUs->about_us_image_front = 'upload/homepage/'.$filename;        
+            $aboutUs->about_us_image_front = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_image_back')!=''){
             $filename = 'about_us_image_back_'.Str::random(12).".". $request->file('about_image_back')->getClientOriginalExtension();
             $request->file('about_image_back')->move(public_path().'/upload/homepage/', $filename);
-            $aboutUs->about_us_image_back = 'upload/homepage/'.$filename;        
+            $aboutUs->about_us_image_back = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_powertex')!=''){
             $filename = 'about_us_powertex'.Str::random(12).".". $request->file('about_powertex')->getClientOriginalExtension();
             $request->file('about_powertex')->move(public_path().'/upload/homepage/', $filename);
-            $aboutUs->about_us_powertex = 'upload/homepage/'.$filename;        
+            $aboutUs->about_us_powertex = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('aobut_hugong')!=''){
             $filename = 'about_us_hugong'.Str::random(12).".". $request->file('aobut_hugong')->getClientOriginalExtension();
             $request->file('aobut_hugong')->move(public_path().'/upload/homepage/', $filename);
-            $aboutUs->about_us_hugong = 'upload/homepage/'.$filename;        
+            $aboutUs->about_us_hugong = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_sunflower')!=''){
             $filename = 'about_us_sunflower'.Str::random(12).".". $request->file('about_sunflower')->getClientOriginalExtension();
             $request->file('about_sunflower')->move(public_path().'/upload/homepage/', $filename);
-            $aboutUs->about_us_sunflower = 'upload/homepage/'.$filename;        
+            $aboutUs->about_us_sunflower = 'upload/homepage/'.$filename;
         }
 
         $aboutUs->save();
@@ -184,37 +202,37 @@ class HomePageController extends Controller
         if ($request->hasFile('about_image')!=''){
             $filename = 'about_us_image'.Str::random(12).".". $request->file('about_image')->getClientOriginalExtension();
             $request->file('about_image')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_image'] = 'upload/homepage/'.$filename;        
+            $data['about_us_image'] = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_powertex')!=''){
             $filename = 'about_us_powertex'.Str::random(12).".". $request->file('about_powertex')->getClientOriginalExtension();
             $request->file('about_powertex')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_powertex'] = 'upload/homepage/'.$filename;        
+            $data['about_us_powertex'] = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('aobut_hugong')!=''){
             $filename = 'about_us_hugong'.Str::random(12).".". $request->file('aobut_hugong')->getClientOriginalExtension();
             $request->file('aobut_hugong')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_hugong'] = 'upload/homepage/'.$filename;        
+            $data['about_us_hugong'] = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_sunflower')!=''){
             $filename = 'about_us_sunflower'.Str::random(12).".". $request->file('about_sunflower')->getClientOriginalExtension();
             $request->file('about_sunflower')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_sunflower'] = 'upload/homepage/'.$filename;        
+            $data['about_us_sunflower'] = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_image_front')!=''){
             $filename = 'about_us_image_front_'.Str::random(12).".". $request->file('about_image_front')->getClientOriginalExtension();
             $request->file('about_image_front')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_image_front'] = 'upload/homepage/'.$filename;        
+            $data['about_us_image_front'] = 'upload/homepage/'.$filename;
         }
 
         if ($request->hasFile('about_image_back')!=''){
             $filename = 'about_us_image_back_'.Str::random(12).".". $request->file('about_image_back')->getClientOriginalExtension();
             $request->file('about_image_back')->move(public_path().'/upload/homepage/', $filename);
-            $data['about_us_image_back'] = 'upload/homepage/'.$filename;        
+            $data['about_us_image_back'] = 'upload/homepage/'.$filename;
         }
 
         $data['about_us_topic']     = $request->about_topic;
@@ -234,7 +252,7 @@ class HomePageController extends Controller
 
 
 
-    
+
     // why us
     public function why_index(){
         $whyUs = WhyUs::get();
@@ -263,7 +281,7 @@ class HomePageController extends Controller
             if ($guarantee_image != ''){
                 $filename = 'about_us_image_front_'.Str::random(12).".". $guarantee_image->getClientOriginalExtension();
                 $guarantee_image->move(public_path().'/upload/homepage/', $filename);
-                $imageGuarantee = 'upload/homepage/'.$filename;        
+                $imageGuarantee = 'upload/homepage/'.$filename;
             }
 
             $data_Timeline = new Guarantee();
@@ -304,7 +322,7 @@ class HomePageController extends Controller
             $number = $request->guarantee_number[$index] ?? null;
 
             if($guarantee_id){
-                
+
                 if(!empty($image)){
                     $filename = 'about_us_image_front_'.Str::random(12).".". $image->getClientOriginalExtension();
                     $image->move(public_path().'/upload/homepage/', $filename);
@@ -313,7 +331,7 @@ class HomePageController extends Controller
                     $guaranteeSearch = Guarantee::where('guarantees_id', $guarantee_id)->first();
                     $updateGuarantee['guarantees_icon'] = $guaranteeSearch->guarantees_icon;
                 }
-            
+
                 $updateGuarantee['guarantees_topic']    = $guarantee_topic;
                 $updateGuarantee['guarantees_detail']   = $guarantee_detail;
                 $updateGuarantee['guarantees_number']   = $number;
@@ -326,9 +344,9 @@ class HomePageController extends Controller
                 if ($image != ''){
                     $filename = 'about_us_image_front_'.Str::random(12).".". $image->getClientOriginalExtension();
                     $image->move(public_path().'/upload/homepage/', $filename);
-                    $imageGuarantee = 'upload/homepage/'.$filename;        
+                    $imageGuarantee = 'upload/homepage/'.$filename;
                 }
-    
+
                 $data_Timeline = new Guarantee();
                 $data_Timeline->guarantees_icon     = $imageGuarantee;
                 $data_Timeline->guarantees_topic    = $guarantee_topic;
@@ -363,7 +381,7 @@ class HomePageController extends Controller
         $textheader = TextHaeder::get();
         return view('backend.home_page.text-header.index', compact('textheader'));
     }
-    
+
     public function text_form(){
         return view('backend.home_page.text-header.add');
     }
@@ -383,7 +401,7 @@ class HomePageController extends Controller
         $yourURL= url('backend/home/text-header');
         echo ("<script>alert('$mes'); location.href='$yourURL'; </script>");
     }
-    
+
     public function text_edit($id){
         $textheader = TextHaeder::where('texth_id', $id)->first();
         return view('backend.home_page.text-header.edit', compact('textheader', 'id'));
@@ -398,7 +416,7 @@ class HomePageController extends Controller
         $textHeader['texth_status']   = $status;
         $textHeader['FK_user_id']      = Auth::user()->id;
         $textHeader['FK_user_name']    = Auth::user()->name;
-        
+
         TextHaeder::where('texth_id', $id)->update($textHeader);
 
         $mes = 'Success';
@@ -408,19 +426,19 @@ class HomePageController extends Controller
 
     public function text_change($id) {
         $textHeader = TextHaeder::where('texth_id', $id)->first();
-    
+
         if (!$textHeader) {
             return response()->json(['error' => 'Banner not found'], 404);
         }
-    
+
         $status = $textHeader->texth_status == "show" ? "hide" : "show";
-    
+
         $textHeader->update([
             'texth_status' => $status,
             'FK_user_id' => Auth::id(),
             'FK_user_name' => Auth::user()->name
         ]);
-    
+
         return response()->json(['success' => true, 'status' => $status]);
     }
 }

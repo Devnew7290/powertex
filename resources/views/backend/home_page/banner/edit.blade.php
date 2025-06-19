@@ -63,6 +63,7 @@
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="mt-2 col-span-12 sm:col-span-6 xl:col-span-3">
                             <b><label for="horizontal-form-1" class="form-label "> รูปภาพ </lable></b>
+                            <p style=" color: red; ">ขนาดรูป : 1600px x 690px</p>
                             <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500" style="color:red; float: right;">*</span>
                         </div>
                         <div class="mt-2 col-span-12 sm:col-span-6 xl:col-span-6">
@@ -96,7 +97,7 @@
 
     @section('javascripts')
     <script>
-        function checkImage(form) { 
+        function checkImage(form) {
             var extall = "jpg, jpeg, gif, png, webp";
 
             var image_banner = document.getElementById("banner_image");
