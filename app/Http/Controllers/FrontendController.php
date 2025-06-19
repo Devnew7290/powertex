@@ -50,7 +50,7 @@ class FrontendController extends Controller
         $promotion = Promotions::where('promotion_status', 'show')
             ->orderByRaw("CASE WHEN promotion_number IS NULL OR promotion_number = '' THEN 1 ELSE 0 END")->orderBy('promotion_number', 'asc')
             ->orderBy('updated_at', 'desc')->limit(3)->get();
-            
+
         $category = CategoryMain::where('cm_status', 'show')->orderby('cm_number','asc')->orderby('updated_at','desc')->limit(5)->get();
         $productAll = Product::whereNotNull('products_index')->where('products_status', 'show')->orderBy('products_index', 'asc')->get();
         $productImg = ProductImage::get();
@@ -301,7 +301,7 @@ class FrontendController extends Controller
             ->orderby('products_index', 'asc')->get();
             // dd($productOther);
         $imageOther = ProductImage::get();
-        
+
         $PP = Promotions::where('promotion_status', 'show')
             ->where('promotion_date_start', '<=', $date)
             ->where('promotion_date_end', '>=', $date)
@@ -329,23 +329,23 @@ class FrontendController extends Controller
 
         if ($request->hasFile('service_warranty')) {
             $files = $request->file('service_warranty');
-        
-            if (!is_array($files)) { 
+
+            if (!is_array($files)) {
                 $files = [$files]; // ✅ ถ้ามีไฟล์เดียว ให้ทำเป็นอาร์เรย์
             }
-        
+
             foreach ($files as $file) {
                 $fileName = 'service_warranty'.Str::random(12) . '.' . $file->getClientOriginalExtension();
                 $filePath = 'upload/one-stop-service/' . $fileName;
-        
+
                 // ตรวจสอบประเภทไฟล์
                 $allowedTypes = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
                 if (in_array(strtolower($file->getClientOriginalExtension()), $allowedTypes)) {
                     $file->move(public_path('/upload/one-stop-service/'), $fileName);
-        
+
                     // ✅ บันทึกลงฐานข้อมูล
                     $serviceWarranty = new ServiceWarranty;
-                    $serviceWarranty->swd_image    = $filePath; 
+                    $serviceWarranty->swd_image    = $filePath;
                     $serviceWarranty->swd_type     = 'warranty';
                     $serviceWarranty->swd_FK_id    = $service->service_id;
                     $serviceWarranty->save();
@@ -355,23 +355,23 @@ class FrontendController extends Controller
 
         if ($request->hasFile('service_image_repair')) {
             $files = $request->file('service_image_repair');
-        
-            if (!is_array($files)) { 
+
+            if (!is_array($files)) {
                 $files = [$files]; // ✅ ถ้ามีไฟล์เดียว ให้ทำเป็นอาร์เรย์
             }
-        
+
             foreach ($files as $file) {
                 $fileName = 'service_repair'.Str::random(12) . '.' . $file->getClientOriginalExtension();
                 $filePath = 'upload/one-stop-service/' . $fileName;
-        
+
                 // ตรวจสอบประเภทไฟล์
                 $allowedTypes = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
                 if (in_array(strtolower($file->getClientOriginalExtension()), $allowedTypes)) {
                     $file->move(public_path('/upload/one-stop-service/'), $fileName);
-        
+
                     // ✅ บันทึกลงฐานข้อมูล
                     $serviceWarranty = new ServiceWarranty;
-                    $serviceWarranty->swd_image    = $filePath; 
+                    $serviceWarranty->swd_image    = $filePath;
                     $serviceWarranty->swd_type     = 'repair';
                     $serviceWarranty->swd_FK_id    = $service->service_id;
                     $serviceWarranty->save();
@@ -381,23 +381,23 @@ class FrontendController extends Controller
 
         if ($request->hasFile('service_transport')) {
             $files = $request->file('service_transport');
-        
-            if (!is_array($files)) { 
+
+            if (!is_array($files)) {
                 $files = [$files]; // ✅ ถ้ามีไฟล์เดียว ให้ทำเป็นอาร์เรย์
             }
-        
+
             foreach ($files as $file) {
                 $fileName = 'service_transport'.Str::random(12) . '.' . $file->getClientOriginalExtension();
                 $filePath = 'upload/one-stop-service/' . $fileName;
-        
+
                 // ตรวจสอบประเภทไฟล์
                 $allowedTypes = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
                 if (in_array(strtolower($file->getClientOriginalExtension()), $allowedTypes)) {
                     $file->move(public_path('/upload/one-stop-service/'), $fileName);
-        
+
                     // ✅ บันทึกลงฐานข้อมูล
                     $serviceWarranty = new ServiceWarranty;
-                    $serviceWarranty->swd_image    = $filePath; 
+                    $serviceWarranty->swd_image    = $filePath;
                     $serviceWarranty->swd_type     = 'transport';
                     $serviceWarranty->swd_FK_id    = $service->service_id;
                     $serviceWarranty->save();
@@ -469,23 +469,23 @@ class FrontendController extends Controller
 
         if ($request->hasFile('image_warranty')) {
             $files = $request->file('image_warranty');
-        
-            if (!is_array($files)) { 
+
+            if (!is_array($files)) {
                 $files = [$files]; // ✅ ถ้ามีไฟล์เดียว ให้ทำเป็นอาร์เรย์
             }
-        
+
             foreach ($files as $file) {
                 $fileName = 'image_warranty'.Str::random(12) . '.' . $file->getClientOriginalExtension();
                 $filePath = 'upload/one-stop-service/' . $fileName;
-        
+
                 // ตรวจสอบประเภทไฟล์
                 $allowedTypes = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
                 if (in_array(strtolower($file->getClientOriginalExtension()), $allowedTypes)) {
                     $file->move(public_path('/upload/one-stop-service/'), $fileName);
-        
+
                     // ✅ บันทึกลงฐานข้อมูล
                     $warrantyWarranty = new ServiceWarranty;
-                    $warrantyWarranty->swd_image    = $filePath; 
+                    $warrantyWarranty->swd_image    = $filePath;
                     $warrantyWarranty->swd_type     = 'product';
                     $warrantyWarranty->swd_FK_id    = $warranty->warranty_id;
                     $warrantyWarranty->save();
@@ -525,5 +525,15 @@ class FrontendController extends Controller
     public function member_change_password(){
         return view('frontend.member-change-password');
     }
-    
+
+    public function privacy_policy(){
+        return view('frontend.privacy-policy');
+    }
+
+    public function terms_service(){
+        return view('frontend.terms-service');
+    }
+
+
+
 }

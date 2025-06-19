@@ -42,7 +42,7 @@
           </div>
           <div class="company-fp-btn">
             <a href="#" class="company-fp-btn-product wow fadeInLeft" data-wow-delay=".15s">สินค้าของเรา</a>
-            <a href="{{ url('about-us') }}" class="company-fp-btn-about wow fadeInLeft" data-wow-delay=".3s">เกี่ยวกับเรา</a>
+            <a href="{{ url('about-us/powertex-about-us') }}" class="company-fp-btn-about wow fadeInLeft" data-wow-delay=".3s">เกี่ยวกับเรา</a>
           </div>
         </figcaption>
         <div class="col-12 col-md-6 company-fp-img wow fadeInUp">
@@ -267,7 +267,7 @@
     <div class="row">
       <div class="col-12 three-banner-grid wow fadeInDown">
         @foreach($brand as $rs)
-          <a href="#" class="three-banner">
+          <a href="#" onclick="return false;" class="three-banner">
             <img src="{{asset($rs->brand_banner)}}" alt="">
           </a>
         @endforeach
@@ -367,7 +367,7 @@
                     @endphp
 
                     <div class="clamp-3">{!! $converted !!}</div>
-                    
+
 
                     <div class="btn-arrow"></div>
                   </figcaption>
@@ -453,7 +453,7 @@
   <?php // require('inc_footer.php'); ?>
   @include('frontend.inc_footer')
 
-  
+
     @if (session('register_success'))
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -466,7 +466,7 @@
     </script>
     @endif
 
-  
+
 
 <script>
   function openCity(evt, cityName) {
@@ -495,7 +495,7 @@
   };
 
 $(document).ready(function(){
-  
+
   $(".banner-carousel").owlCarousel({
       loop: true,
       rewind: false,
@@ -648,7 +648,7 @@ $(document).ready(function(){
     $(".promotion-carousel").trigger('prev.owl.carousel');
   });
 
-});    
+});
 </script>
 </body>
 </html>

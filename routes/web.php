@@ -61,6 +61,10 @@ Route::post('warranty/create/', [App\Http\Controllers\FrontendController::class,
 // Route::get('register/customer', [App\Http\Controllers\FrontendController::class, 'register'])->name('register');
 Route::get('/cart/header-text', [\App\Http\Controllers\CartController::class, 'headerText'])->name('cart.header_text');
 
+
+Route::get('privacy_policy', [App\Http\Controllers\FrontendController::class, 'privacy_policy'])->name('privacy_policy');
+Route::get('terms_service', [App\Http\Controllers\FrontendController::class, 'terms_service'])->name('terms_service');
+
 Route::prefix('member')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('member.login');
     Route::post('/login', [LoginController::class, 'login']);
@@ -68,7 +72,7 @@ Route::prefix('member')->group(function () {
 
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('member.register');
     Route::post('/register', [RegisterController::class, 'register']);
-    
+
 
     Route::middleware('auth:member')->group(function () {
         //cart
@@ -77,7 +81,7 @@ Route::prefix('member')->group(function () {
         Route::post('/cart/update', [\App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
         Route::post('/cart/remove', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
         Route::post('/cart/clear', [\App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
-        
+
         Route::get('checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
         Route::post('order/store', [App\Http\Controllers\OrderController::class, 'store'])->name('order.store');
 

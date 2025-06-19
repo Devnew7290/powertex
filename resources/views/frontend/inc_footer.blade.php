@@ -43,9 +43,9 @@
                         <h5>เกี่ยวกับเรา</h5>
                         <ul class="footer-menu">
                             <li><a href="{{ url('/news/news') }}">ข่าวสาร และกิจกรรม</a></li>
-                            <li><a href="{{ url('/contact') }}">ติดต่อเรา</a></li>
-                            <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
-                            <li><a href="#">ข้อตกลงการใช้งาน</a></li>
+                            <li><a href="{{ url('/contact/powertex-URL') }}">ติดต่อเรา</a></li>
+                            <li><a href="{{ url('privacy_policy') }}">นโยบายความเป็นส่วนตัว</a></li>
+                            <li><a href="{{ url('terms_service') }}">ข้อตกลงการใช้งาน</a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
 <script>
 $(document).ready(function() {
     var mmH = $('.header-bg').outerHeight(true);
-    if (Modernizr.mq('(min-width: 992px)')) {
+    if (Modernizr.mq('(min-width: 62rem)')) {
         $('body').eq(0).css('padding-top', mmH);
     }else{
         $('body').eq(0).css('padding-top', mmH);
@@ -208,9 +208,9 @@ $(document).ready(function() {
             $(this).css('top', sectionNH);
         }
     });
-    
+
     $('html').click(function(){
-        if (Modernizr.mq('(min-width: 992px)')) {
+        if (Modernizr.mq('(min-width: 62rem)')) {
         }
     });
 
@@ -250,7 +250,7 @@ $(document).ready(function() {
         });
     });
 
-    if ($(this).scrollTop() > 150){ 
+    if ($(this).scrollTop() > 150){
         $('.header-bg').addClass("sticky");
         $('.header-promotion').slideUp();
     } else{
@@ -261,7 +261,7 @@ $(document).ready(function() {
     $(".qty-btn").on("click", function () {
         var $button = $(this);
         var oldValue = $button.siblings('.qty-input').val();
-        
+
 
         if ($(this).hasClass('qty-plus')) {
             var newVal = parseFloat(oldValue) + 1;
@@ -281,8 +281,8 @@ $(document).ready(function() {
 });
 
 
-    
-$(window).on('load', function () {    
+
+$(window).on('load', function () {
 
     wow = new WOW(
 		  {
@@ -293,9 +293,9 @@ $(window).on('load', function () {
     wow.init();
 
 });
-    
+
 $(window).scroll(function() {
-    if ($(this).scrollTop() > 150){ 
+    if ($(this).scrollTop() > 150){
         $('.header-bg').addClass("sticky");
         $('.header-promotion').slideUp();
     } else{
