@@ -55,6 +55,10 @@ class UserController extends Controller
             'menus'    => 'nullable|array',
         ]);
 
+         if (!isset($request->menus)) {
+            return redirect()->route('backend.users.index')->with('error', 'กรุณาเลือกเมนูอย่างน้อย 1 รายการง');
+        }
+
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
@@ -84,6 +88,10 @@ class UserController extends Controller
             'role'     => 'required|exists:roles,name',
             'menus'    => 'nullable|array',
         ]);
+
+        if (!isset($request->menus)) {
+            return redirect()->route('backend.users.index')->with('error', 'กรุณาเลือกเมนูอย่างน้อย 1 รายการ');
+        }
 
         $user->name = $request->name;
         $user->email = $request->email;
