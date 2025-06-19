@@ -26,7 +26,8 @@ class UserController extends Controller
         'contact' => 'ติดต่อเรา',
         'repairs' => 'แจ้งซ่อม',
         'warranty' => 'รับประกันสินค้าออนไลน์',
-        'catalog' => 'แคตตาล็อก'
+        'catalog' => 'แคตตาล็อก',
+        'manage_users' => 'จัดการผู้ใช้งาน',
     ];
 
     public function index()
@@ -74,6 +75,8 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        // dd($request->all());
+
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users,email,'.$user->id,
