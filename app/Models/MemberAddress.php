@@ -12,6 +12,10 @@ class MemberAddress extends Model
         'company_name', 'tax_number'
     ];
 
+    protected $casts = [
+        'is_default' => 'boolean',
+    ];
+
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');

@@ -522,8 +522,31 @@ class FrontendController extends Controller
         return view('frontend.member-address-edit');
     }
 
-    public function member_change_password(){
+    public function showChangePasswordForm()
+    {
         return view('frontend.member-change-password');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password'      => 'required',
+            'password'              => 'required|min:6|confirmed',
+        ]);
+
+        $member = auth('member')->user();
+
+        // ตรวจสอบว่ารหัสผ่านเก่าถูกต้อง
+        if (! Hash::check($request->current_password, $member->password)) {
+            return back()->withErrors(['current_password' => 'รหัสผ่านเดิมไม่ถูกต้อง']);
+        }
+
+        // อัปเดตรหัสผ่านใหม่ (bcrypt จะถูกเรียกใช้โดยอัตโนมัติผ่าน Hash::make)
+        $member->password = Hash::make($request->password);
+        $member->save();
+
+        return redirect()->route('member.password.form')
+            ->with('status', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
     }
 
     public function privacy_policy(){

@@ -27,7 +27,32 @@
                             <th scope="col">ยอดรวม</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        @foreach($order->items as $item)
+                            <tr>
+                            <td>
+                                <div class="member-order-detail">
+                                <img src="{{ asset($item->product->image_url ?? 'images/default.png') }}" alt="">
+                                <h6>{{ $item->product_name }}</h6>
+                                </div>
+                            </td>
+                            <td><span>ราคา</span>฿ {{ number_format($item->price, 2) }}</td>
+                            <td><span>จำนวน</span>{{ $item->quantity }}</td>
+                            <td><span>ยอดรวม</span>฿ {{ number_format($item->price * $item->quantity, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">ยอดรวม</td>
+                            <td>฿ {{ number_format($order->items->sum(fn($i) => $i->price * $i->quantity), 2) }}</td>
+                        </tr>
+                    </tfoot>
+
+
+                    {{-- <tbody>
                         <tr>
                             <td>
                                 <div class="member-order-detail">
@@ -56,7 +81,7 @@
                             <td colspan="3">ยอดรวม</td>
                             <td>฿ 6,380</td>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                 </table>
             </div>
         </div>

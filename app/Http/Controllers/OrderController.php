@@ -65,7 +65,7 @@ class OrderController extends Controller
             // $prefix = 'PTE' . $date;
             // $todayCount = Order::whereDate('order_date', now()->toDateString())->count() + 1;
             // $order_number = $prefix . str_pad($todayCount, 6, '0', STR_PAD_LEFT);
-            $orderPrefix = 'PROD'; // เปลี่ยนเป็น 'PROD' หรืออะไรก็ได้ตามที่ต้องการ
+            $orderPrefix = 'DEV'; // เปลี่ยนเป็น 'PROD' หรืออะไรก็ได้ตามที่ต้องการ
 
             $date = now()->format('ymd');
             $prefix = $orderPrefix . 'PTE' . $date;

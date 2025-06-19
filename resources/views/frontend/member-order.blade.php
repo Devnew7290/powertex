@@ -29,6 +29,39 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($orders as $order)
+                            <tr>
+                            <td>
+                                <span>หมายเลขคำสั่งซื้อ</span>
+                                <a href="{{ route('member.orders.show', $order->id) }}">
+                                #{{ $order->order_number }}
+                                </a>
+                            </td>
+                            <td>
+                                <span>วันที่</span>
+                                {{ \Carbon\Carbon::parse($order->order_date)->format('j F Y') }}
+                            </td>
+                            <td>
+                                <span>สถานะการชำระเงิน</span>
+                                {{ $order->payment_status }}
+                            </td>
+                            <td>
+                                <span>สถานะการจัดการ</span>
+                                {{ $order->shipping_status }}
+                            </td>
+                            <td>
+                                <span>ยอดรวม</span>
+                                ฿ {{ number_format($order->total_amount, 2) }}
+                            </td>
+                            </tr>
+                        @empty
+                            <tr>
+                            <td colspan="5" class="text-center">ยังไม่มีคำสั่งซื้อ</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+
+                    {{-- <tbody>
                         <tr>
                             <td><span>หมายเลขคำสั่งซื้อ</span><a href="{{ url('member/member-order-detail') }}">#PTX0123</a></td>
                             <td><span>วันที่</span>10 มีนาคม 2025</td>
@@ -50,7 +83,7 @@
                             <td><span>สถานะการจัดการ</span>จัดส่งสำเร็จ</td>
                             <td><span>ยอดรวม</span>฿ 3,190</td>
                         </tr>
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
         </div>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Member\LoginController;
 use App\Http\Controllers\Member\RegisterController;
 use App\Services\PaymentGateway2C2PService;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MemberOrderController;
+use App\Http\Controllers\MemberAddressController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -85,11 +87,23 @@ Route::prefix('member')->group(function () {
         Route::get('checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
         Route::post('order/store', [App\Http\Controllers\OrderController::class, 'store'])->name('order.store');
 
-        Route::get('member-order', [App\Http\Controllers\FrontendController::class, 'member_order'])->name('member.order');
-        Route::get('member-order-detail', [App\Http\Controllers\FrontendController::class, 'member_order_detail'])->name('member.order.detail');
-        Route::get('member-address', [App\Http\Controllers\FrontendController::class, 'member_address'])->name('member.address');
-        Route::get('member-address-edit', [App\Http\Controllers\FrontendController::class, 'member_address_edit'])->name('member.address.edit');
-        Route::get('member-change-password', [App\Http\Controllers\FrontendController::class, 'member_change_password'])->name('member.change.password');
+        // หน้าแสดงรายการออเดอร์ทั้งหมดของสมาชิก
+        Route::get('orders', [MemberOrderController::class, 'index'])->name('member.orders');
+        // หน้าแสดงรายละเอียดออเดอร์ (รับพารามิเตอร์ id)
+        Route::get('orders/{order}', [MemberOrderController::class, 'show'])->name('member.orders.show');
+        
+        // Route::get('member-address', [App\Http\Controllers\FrontendController::class, 'member_address'])->name('member.address');
+        // Route::get('member-address-edit', [App\Http\Controllers\FrontendController::class, 'member_address_edit'])->name('member.address.edit');
+        Route::get('member-change-password', [App\Http\Controllers\FrontendController::class, 'showChangePasswordForm'])->name('member.password.form');
+        Route::post('member-change-password', [App\Http\Controllers\FrontendController::class, 'changePassword'])->name('member.password.update');
+
+        Route::get ('member-address', [MemberAddressController::class,'index'])->name('member.address');
+        Route::get ('member-address/add', [MemberAddressController::class,'create'])->name('member.address.add');
+        Route::post('member-address', [MemberAddressController::class,'store'])->name('member.address.store');
+        Route::get ('member-address/{address}/edit', [MemberAddressController::class,'edit'])->name('member.address.edit');
+        Route::put ('member-address/{address}', [MemberAddressController::class,'update'])->name('member.address.update');
+        Route::delete('member-address/{address}', [MemberAddressController::class,'destroy'])->name('member.address.destroy');
+        Route::post('member-address/{address}/default', [MemberAddressController::class,'setDefault'])->name('member.address.default');
     });
 });
 

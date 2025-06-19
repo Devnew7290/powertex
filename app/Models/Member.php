@@ -39,4 +39,9 @@ class Member extends Authenticatable
         'email_verified_at' => 'datetime',
         'birthday' => 'date',
     ];
+
+    public function memberAddresses()
+    {
+        return $this->hasMany(MemberAddress::class, 'member_id');
+    }
 }
